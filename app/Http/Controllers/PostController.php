@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PostRequest;
+use App\Http\Requests\PostStoreRequest;
+use App\Http\Requests\PostUpdateRequest;
 use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -32,16 +33,16 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\PostRequest  $request
+     * @param  \App\Http\Requests\PostStoreRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store(PostStoreRequest $request)
     {
         $post = new Post($request->all());
         $post->user_id = $request->user()->id;
 
         $file = $request->file('image');
-        $post->image = date('YmdHis') . '_' . $file->getClientOriginalName();
+        $post->image = self::createFileName($file);
 
         // トランザクション開始
         DB::beginTransaction();
@@ -89,19 +90,66 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('posts.edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\PostRequest  $request
+     * @param  \App\Http\Requests\PostUpdateRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request, $id)
+    public function update(PostUpdateRequest $request, $id)
     {
-        //
+        $post = Post::find($id);
+
+        if ($request->user()->cannot('update', $post)) {
+            return redirect()->route('posts.show', $post)
+                ->withErrors('自分の記事以外は更新できません');
+        }
+
+        $file = $request->file('image');
+        if ($file) {
+            $delete_file_path = 'images/posts/' . $post->image;
+            $post->image = self::createFileName($file);
+        }
+        $post->fill($request->all());
+
+        // トランザクション開始
+        DB::beginTransaction();
+        try {
+            // 更新
+            $post->save();
+
+            if ($file) {
+                // 画像アップロード
+                if (!Storage::putFileAs('images/posts', $file, $post->image)) {
+                  // 例外を投げてロールバックさせる
+                    throw new \Exception('画像ファイルの保存に失敗しました。');
+                }
+
+                // 画像削除
+                if (!Storage::delete($delete_file_path)) {
+                    //アップロードした画像を削除する
+                    Storage::delete('images/posts/' . $post->image);
+                    //例外を投げてロールバックさせる
+                    throw new \Exception('画像ファイルの削除に失敗しました。');
+                }
+            }
+
+            // トランザクション終了(成功)
+            DB::commit();
+        } catch (\Exception $e) {
+            // トランザクション終了(失敗)
+            DB::rollback();
+            return back()->withInput()->withErrors($e->getMessage());
+        }
+
+        return redirect()->route('posts.show', $post)
+            ->with('notice', '記事を更新しました');
     }
 
     /**
@@ -113,5 +161,10 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private static function createFileName($file)
+    {
+        return date('YmdHis') . '_' . $file->getClientOriginalName();
     }
 }
