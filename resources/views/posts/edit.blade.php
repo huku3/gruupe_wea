@@ -3,7 +3,6 @@
         <h2 class="text-center text-lg font-bold pt-6 tracking-widest">ブログ編集</h2>
 
         <x-validation-errors :errors="$errors" />
-
         <form action="{{ route('posts.update', $post) }}" method="POST" enctype="multipart/form-data"
             class="rounded pt-3 pb-8 mb-4">
             @csrf
