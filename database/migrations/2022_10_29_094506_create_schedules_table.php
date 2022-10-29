@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->date('start_date')->comment('開始日');
-            $table->date('end_date')->comment('終了日');
-            $table->string('event_name')->comment('イベント名');
+            $table->date('start')->comment('開始日');
+            $table->date('end')->comment('終了日');
+            $table->string('title')->comment('イベント名');
             $table->timestamps();
         });
     }
