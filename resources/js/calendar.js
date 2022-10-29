@@ -33,8 +33,8 @@ let calendar = new Calendar(calendarEl, {
             // Laravelの登録処理の呼び出し
             axios
                 .post("/schedule-add", {
-                    start_date: info.start.valueOf(),
-                    end_date: info.end.valueOf(),
+                    start: info.start.valueOf(),
+                    end: info.end.valueOf(),
                     event_name: eventName,
                 })
                 .then(() => {

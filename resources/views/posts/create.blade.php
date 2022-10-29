@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container lg:w-1/2 md:w-4/5 w-11/12 mx-auto mt-8 px-8 bg-white shadow-md">
-        <h2 class="text-center text-lg font-bold pt-6 tracking-widest">ブログ登録</h2>
+        <h2 class="text-center text-lg font-bold pt-6 tracking-widest">社内報登録</h2>
 
         <x-validation-errors :errors="$errors" />
         <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data"
@@ -24,7 +24,7 @@
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm mb-2" for="image">
-                    ブログ用画像
+                    社内報用画像
                 </label>
                 <input type="file" name="image" class="border-gray-300">
             </div>

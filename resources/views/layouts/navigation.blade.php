@@ -8,6 +8,10 @@
                     <a href="{{ route('root') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
+                    <a href="{{ route('vendor.full-calender') }}">
+                        <x-application-logo2 class="block h-10 w-auto fill-current text-gray-600" />
+                    </a>
+                    
                 </div>
 
             </div>

@@ -1,2 +1,1 @@
-<h1 class="text-lg">Hide Blog</h1>
-
+<h1 class="text-3xl mr-10" >社内報</h1>

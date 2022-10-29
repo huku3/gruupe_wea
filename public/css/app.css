@@ -723,6 +723,9 @@ select {
 .-mr-2 {
   margin-right: -0.5rem;
 }
+.mr-10 {
+  margin-right: 2.5rem;
+}
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -1162,13 +1165,13 @@ select {
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 .text-xs {
   font-size: 0.75rem;
