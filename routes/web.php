@@ -35,9 +35,11 @@ Route::resource('posts.comments', CommentController::class)
     ->only(['create', 'store', 'edit', 'update', 'destroy'])
     ->middleware('auth');
 
-Route::get('full-calender', [FullCalenderController::class, 'index'])
+Route::get('/full-calender', [FullCalenderController::class, 'index'])
     ->name('vendor.full-calender');
-Route::post('full-calender/action', [FullCalenderController::class, 'action']);
+
+// Route::post('full-calender/action', [FullCalenderController::class, 'action']);
+Route::post('/full-calender', [FullCalenderController::class, 'action']);
 
 
 Route::post('/schedule-add', [ScheduleController::class, 'scheduleAdd'])->name('schedule-add');

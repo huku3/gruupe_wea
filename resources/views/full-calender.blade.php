@@ -14,7 +14,7 @@
 </head>
 
 <body>
-
+<a href="/">戻る</a>
     <div class="container">
         <br />
         <h1 class="text-center text-primary"><u>スケジュール</u></h1>

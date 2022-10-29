@@ -52,5 +52,15 @@ let calendar = new Calendar(calendarEl, {
                 });
         }
     },
+
+    events: '/full-calender',
+    events: [
+    {
+        'title': 'サンプル',
+        'start': '2022-10-27',
+        'end': '2022-10-28',
+    
+    }
+    ],
 });
 calendar.render();
