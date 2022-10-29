@@ -37,6 +37,9 @@
                             <x-dropdown-link :href="route('posts.create')">
                                 {{ __('Create Post') }}
                             </x-dropdown-link>
+                            <x-dropdown-link :href="route('vendor.full-calender')">
+                                {{ __('Calender') }}
+                            </x-dropdown-link>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <x-dropdown-link :href="route('logout')"
@@ -89,6 +92,9 @@
                     <!-- Authentication -->
                     <x-responsive-nav-link :href="route('posts.create')">
                         {{ __('Create Post') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('vendor.full-calender')">
+                        {{ __('Calender') }}
                     </x-responsive-nav-link>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf

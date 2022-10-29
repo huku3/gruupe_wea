@@ -1,1 +1,2 @@
-<h1 class="text-lg">Hare Blog</h1>
+<h1 class="text-lg">Hide Blog</h1>
+

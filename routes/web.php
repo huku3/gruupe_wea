@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FullCalenderController;
+use App\Http\Controllers\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +35,10 @@ Route::resource('posts.comments', CommentController::class)
     ->only(['create', 'store', 'edit', 'update', 'destroy'])
     ->middleware('auth');
 
+Route::get('full-calender', [FullCalenderController::class, 'index'])
+    ->name('vendor.full-calender');
+Route::post('full-calender/action', [FullCalenderController::class, 'action']);
+
+
+Route::post('/schedule-add', [ScheduleController::class, 'scheduleAdd'])->name('schedule-add');
 require __DIR__.'/auth.php';
