@@ -2,6 +2,7 @@
 <html>
 
 <head>
+
     <title>カレンダー表示アプリ</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -14,10 +15,14 @@
 </head>
 
 <body>
+
+
     <a href="/">戻る</a>
     <div class="container">
         <br />
-        <h1 class="text-center text-primary"><u>スケジュール</u></h1>
+        <h1 class="text-center text-black"><u>スケジュール</u></h1>
+
+
         <br />
 
         <div id="calendar"></div>
@@ -61,7 +66,7 @@
                                 type: 'add'
                             },
                             success: function(data) {
-                            console.log(data);
+                                console.log(data);
                                 calendar.fullCalendar('refetchEvents');
                                 alert("Event Created Successfully");
                             }

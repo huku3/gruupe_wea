@@ -22272,7 +22272,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
   // Export lodash.
   var _ = runInContext();
 
-  // Some AMD build optimizers, like r.js, check for vital patterns like:
+  // Some AMD build optimizers, like r.js, check for condition patterns like:
   if (true) {
     // Expose Lodash on the global object to prevent errors when Lodash is
     // loaded by a script tag in the presence of an AMD loader.

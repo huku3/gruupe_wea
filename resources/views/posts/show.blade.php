@@ -6,16 +6,17 @@
         <x-validation-errors :errors="$errors" />
 
         <article class="mb-2">
-            <h2 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-1 text-3xl md:text-4xl">{{ $post->title }}
+            <h2 class="font-bold font-sans break-normal text-green-900 pt-6 pb-1 text-3xl md:text-4xl">
+                {{ $post->title }}
             </h2>
             <h3>{{ $post->user->name }}</h3>
-            <p class="text-sm mb-2 md:text-base font-normal text-gray-600">
+            <p class="text-sm mb-2 md:text-base font-normal text-green-600">
                 <span
                     class="text-red-400 font-bold">{{ date('Y-m-d H:i:s', strtotime('-1 day')) < $post->created_at ? 'NEW' : '' }}</span>
                 {{ $post->created_at }}
             </p>
             <img src="{{ $post->image_url }}" alt="" class="mb-4">
-            <p class="text-gray-700 text-base">{!! nl2br(e($post->body)) !!}</p>
+            <p class="text-green-700 text-base">{!! nl2br(e($post->body)) !!}</p>
         </article>
         <div class="flex flex-row text-center my-4">
             @can('update', $post)
@@ -36,11 +37,12 @@
             <hr class="my-4">
 
             <div class="flex justify-end">
-                <a href="{{ route('posts.comments.create', $post) }}" class="bg-indigo-400 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block">コメント登録</a>
+                <a href="{{ route('posts.comments.create', $post) }}"
+                    class="bg-indigo-400 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block">コメント登録</a>
             </div>
         @endauth
 
-        <section class="font-sans break-normal text-gray-900 ">
+        <section class="font-sans break-normal text-green-900 ">
             @foreach ($comments as $comment)
                 <div class="my-2">
                     <span class="font-bold mr-3">{{ $comment->user->name }}</span>
