@@ -63,7 +63,7 @@ class PostController extends Controller
 
             return redirect()
                 ->route('posts.show', $post)
-                ->with('notice', '記事を登録しました');
+                ->with('notice', '社内報を登録しました');
         } catch (\Exception $e) {
             // トランザクション終了(失敗)
             DB::rollback();
@@ -111,7 +111,7 @@ class PostController extends Controller
 
         if ($request->user()->cannot('update', $post)) {
             return redirect()->route('posts.show', $post)
-                ->withErrors('自分の記事以外は更新できません');
+                ->withErrors('自分の社内報以外は更新できません');
         }
 
         $file = $request->file('image');
@@ -147,7 +147,7 @@ class PostController extends Controller
             DB::commit();
 
             return redirect()->route('posts.show', $post)
-                ->with('notice', '記事を更新しました');
+                ->with('notice', '社内報を更新しました');
         } catch (\Exception $e) {
             // トランザクション終了(失敗)
             DB::rollback();
@@ -179,7 +179,7 @@ class PostController extends Controller
             DB::commit();
 
             return redirect()->route('posts.index')
-                ->with('notice', '記事を削除しました');
+                ->with('notice', '社内報を削除しました');
         } catch (\Exception $e) {
             // トランザクション終了(失敗)
             DB::rollback();

@@ -8,9 +8,13 @@
                     <a href="{{ route('root') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
-                    <a href="{{ route('vendor.full-calender') }}">
+                    <a href="{{ route('full-calender') }}">
                         <x-application-logo2 class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
+                    <a href="{{ route('full-calender') }}">
+                        <x-application-logo3 class="block h-10 w-auto fill-current text-gray-600" />
+                    </a>
+
                     
                 </div>
 
@@ -39,9 +43,10 @@
                         <!-- Authentication -->
                         @auth
                             <x-dropdown-link :href="route('posts.create')">
-                                {{ __('Create Post') }}
+                                {{ __('社内報　投稿') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('vendor.full-calender')">
+                            {{-- <x-dropdown-link :href="route('vendor.full-calender')"> --}}
+                            <x-dropdown-link :href="route('full-calender')">
                                 {{ __('Calender') }}
                             </x-dropdown-link>
                             <form method="POST" action="{{ route('logout') }}">
@@ -97,7 +102,7 @@
                     <x-responsive-nav-link :href="route('posts.create')">
                         {{ __('Create Post') }}
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('vendor.full-calender')">
+                    <x-responsive-nav-link :href="route('full-calender')">
                         {{ __('Calender') }}
                     </x-responsive-nav-link>
                     <form method="POST" action="{{ route('logout') }}">

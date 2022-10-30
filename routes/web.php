@@ -44,7 +44,7 @@ Route::resource('posts.comments', CommentController::class)
 
 // Route::post('/schedule-add', [ScheduleController::class, 'store'])->name('schedule-add');
 
-Route::get('full-calender', [FullCalenderController::class, 'index']);
+Route::get('full-calender', [FullCalenderController::class, 'index'])->name('full-calender');
 
 Route::post('full-calender/action', [FullCalenderController::class, 'action']);
 
